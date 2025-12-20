@@ -21,7 +21,7 @@ export const productsReducer = (state = initialState, action) => {
             error: null
         }
 
-        case ACTION_TYPE.FETCH_PRODUCTS_SUCCES: return {
+        case ACTION_TYPE.FETCH_PRODUCTS_SUCCESS: return {
             ...state,
             isLoading: false,
             items: action.payload,
@@ -35,7 +35,7 @@ export const productsReducer = (state = initialState, action) => {
             error: action.payload
         }
 
-        case ACTION_TYPE.FETCH_CATEGORY_SUCCES: return {
+        case ACTION_TYPE.FETCH_CATEGORIES_SUCCESS: return {
             ...state,
             categories: action.payload
         }

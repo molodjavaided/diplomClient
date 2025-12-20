@@ -3,11 +3,11 @@ import { ACTION_TYPE } from "./actions-type";
 export const productsActions = {
 fetchProductsStart: () => ({ type: ACTION_TYPE.FETCH_PRODUCTS_START }),
 
-fetchProductsSucces: (products) => ({ type: ACTION_TYPE.FETCH_PRODUCTS_SUCCES, payload: products }),
+fetchProductsSucces: (products) => ({ type: ACTION_TYPE.FETCH_PRODUCTS_SUCCESS, payload: products }),
 
 fetchProductsError: (error) => ({ type: ACTION_TYPE.FETCH_PRODUCTS_ERROR, payload: error }),
 
-fetchCategorySuccess: (categories) => ({ type: ACTION_TYPE.FETCH_CATEGORY_SUCCES, payload: categories }),
+fetchCategorySuccess: (categories) => ({ type: ACTION_TYPE.FETCH_CATEGORIES_SUCCESS, payload: categories }),
 
 setSearchQuery: (query) => ({ type: ACTION_TYPE.SET_SEARCH_QUERY, payload: query }),
 

@@ -1,5 +1,9 @@
 import styled from "styled-components";
 const ErrorContainer = ({ className, error }) => {
+  if (!error) {
+    return null;
+  }
+
   return (
     <div className={className}>
       <h2>Ошибка</h2>
