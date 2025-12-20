@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
+import { GlobalError } from "./components/common/error/globalError";
+import { Header } from "./components/layout/header/Header";
 
 const AppColumn = styled.div`
   display: flex;
@@ -22,7 +24,9 @@ const Content = styled.div`
 function App() {
   return (
     <AppColumn>
+      <Header />
       <Content>
+        <GlobalError />
         <Routes>
           <Route path="/" element={<div>Главная</div>} />
           <Route path="/login" element={<div>Вход</div>} />
