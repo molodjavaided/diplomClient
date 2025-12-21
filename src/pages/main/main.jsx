@@ -10,6 +10,8 @@ import { Products } from "../../components/products/products";
 import { Button } from "../../components/common/button/button";
 import { CategoryFilter } from "../../components/category-filter/category-filter";
 import { SortProducts } from "../../components/sort-products/sort-products";
+import { productsActions } from "../../redux/actions/products-actions";
+import { Search } from "../../components/search/search";
 
 const MainContainer = ({ className }) => {
   const dispatch = useDispatch();
@@ -19,6 +21,7 @@ const MainContainer = ({ className }) => {
     filteredItems: products,
     sortBy,
     selectedCategory,
+    searchQuery,
   } = useSelector((state) => state.products);
 
   useEffect(() => {
@@ -28,6 +31,10 @@ const MainContainer = ({ className }) => {
 
   const handleResetFilters = () => {
     dispatch(productsActions.resetFilters());
+  };
+
+  const handleSearch = (query) => {
+    dispatch(productsActions.setSearchQuery(query));
   };
 
   const hasActiveFilters = selectedCategory || sortBy !== "default";
@@ -42,6 +49,7 @@ const MainContainer = ({ className }) => {
 
   return (
     <div className={className}>
+      <Search onSearch={handleSearch} />
       <div className="wrapper">
         <div className="filters-container">
           <CategoryFilter />
