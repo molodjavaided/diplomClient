@@ -4,6 +4,9 @@ import { GlobalError } from "./components/common/error/globalError";
 import { Header } from "./components/layout/header/Header";
 import { Main } from "./pages/main/main";
 import { ProductPage } from "./pages/product/product-page";
+import { CartPage } from "./pages/cart/cart";
+import { Register } from "./pages/register/register";
+import { Authorization } from "./pages/authorization/authorization";
 
 const AppColumn = styled.div`
   display: flex;
@@ -31,9 +34,9 @@ function App() {
         <GlobalError />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/login" element={<div>Вход</div>} />
-          <Route path="/register" element={<div>Регистрация</div>} />
-          <Route path="/cart" element={<div>Корзина</div>} />
+          <Route path="/login" element={<Authorization />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="/product/:productId" element={<ProductPage />} />
           <Route path="/admin" element={<div>Админ панель</div>} />
         </Routes>

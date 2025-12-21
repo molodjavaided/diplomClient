@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { cartActions, fetchProducts } from "../store/actions";
-import { addItemToCartServer, clearServerCart } from "../store/actions/cart-async";
+import { fetchProducts } from "../redux/actions/products-async";
+import { cartActions } from "../redux/actions/cart-actions";
+import { addItemToCartServer, clearServerCart } from "../redux/actions/cart-async";
 
 export const useCart = () => {
     const dispatch = useDispatch()
@@ -64,10 +65,6 @@ export const useCart = () => {
       };
     }
   };
-
-//   const checkInStock = (items) => {
-//     const items.filter(item => !item.inStock)
-//   }
 
 
 

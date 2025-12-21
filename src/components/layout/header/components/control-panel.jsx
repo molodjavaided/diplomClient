@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { icons } from "../../../ui/icons/icons";
 import { Icon } from "../../../ui/icon/icon";
+import { logoutUser } from "../../../../redux/actions/auth-async";
 
 const RightAligned = styled.div`
   display: flex;

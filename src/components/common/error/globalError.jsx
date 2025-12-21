@@ -7,7 +7,7 @@ export const GlobalError = () => {
   const productError = useSelector((state) => state.product?.error);
   const uiError = useSelector((state) => state.ui?.error);
 
-  const error = authError || cartError || productError || uiError;
+  const error = cartError || productError || uiError;
 
   return <Error error={error} />;
 };

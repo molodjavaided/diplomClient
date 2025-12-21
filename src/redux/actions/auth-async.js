@@ -11,11 +11,13 @@ export const authUser = (login, password) => async (dispatch) => {
         if (response.userData) {
             dispatch(authActions.authLoginSuccess(response.userData));
             await dispatch(fetchUserCart())
+            return { success: true, userData: response.userData };
         } else {
             throw new Error(response.message || "Ошибка входа")
         }
     } catch (error) {
         dispatch(authActions.authLoginError(error.message))
+        throw error;
     }
 }
 
@@ -28,7 +30,7 @@ export const registerUser = (login, password) => async (dispatch) => {
         if (response.userData) {
             dispatch(authActions.authRegisterSuccess(response.userData))
             await dispatch(fetchUserCart())
-            return response.userData
+            return { success: true, userData: response.userData };
         } else {
             throw new Error(response.message || "Ошибка регистрации")
         }
@@ -68,15 +70,18 @@ export const checkAuth = () => async (dispatch) => {
         if (response.user) {
             dispatch(authActions.authLoginSuccess(response.user))
             await dispatch(fetchUserCart())
+            return { success: true, user: response.user };
         } else {
             localStorage.removeItem('user');
             sessionStorage.removeItem('user');
             dispatch(authActions.logout());
+            throw new Error('Пользователь не найден');
         }
     } catch (error) {
         console.log("Пользователь не авторизован", error.message);
         localStorage.removeItem('user');
         sessionStorage.removeItem('user');
         dispatch(authActions.logout());
+        throw error;
     }
 }

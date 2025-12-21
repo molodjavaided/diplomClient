@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { useCart } from "../../hooks/useCart";
 import { CartItem } from "../../components/cart-item/cart-item";
+import { Button } from "../../components/common/button/button";
 
 const CartPageContainer = ({ className }) => {
   const dispatch = useDispatch();
