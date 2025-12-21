@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { GlobalError } from "./components/common/error/globalError";
 import { Header } from "./components/layout/header/Header";
 import { Main } from "./pages/main/main";
+import { ProductPage } from "./pages/product/product-page";
 
 const AppColumn = styled.div`
   display: flex;
@@ -33,9 +34,8 @@ function App() {
           <Route path="/login" element={<div>Вход</div>} />
           <Route path="/register" element={<div>Регистрация</div>} />
           <Route path="/cart" element={<div>Корзина</div>} />
-          <Route path="/product/:productId" element={<div>Товар</div>} />
+          <Route path="/product/:productId" element={<ProductPage />} />
           <Route path="/admin" element={<div>Админ панель</div>} />
-          <Route path="*" element={<div>Ошибка</div>} />
         </Routes>
       </Content>
     </AppColumn>
