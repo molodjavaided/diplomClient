@@ -36,6 +36,41 @@ export const useCart = () => {
         }
     }
 
+    const makingOrder = async () => {
+        if (!user) {
+            navigate('/login')
+            return
+        }
+
+        const notInStock = items.filter(item => !item.inStock);
+        if (notInStock.length > 0) {
+            return {
+                success: false,
+                error: "Некоторые товары отсутствуют в наличии"
+            };
+        }
+
+        try {
+      const result = await dispatch(makeOrder());
+      return {
+        success: true,
+        data: result,
+        message: "Заказ успешно оформлен"
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: error.message || "Ошибка оформления заказа"
+      };
+    }
+  };
+
+//   const checkInStock = (items) => {
+//     const items.filter(item => !item.inStock)
+//   }
+
+
+
     const clearCart = async () => {
 
         try {
@@ -47,5 +82,5 @@ export const useCart = () => {
             console.error("Ошибка очистки корзины:", error.message);
         }
     }
-    return { addToCart, clearCart }
+    return { addToCart, clearCart, makingOrder }
 }
