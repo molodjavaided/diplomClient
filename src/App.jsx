@@ -7,6 +7,10 @@ import { ProductPage } from "./pages/product/product-page";
 import { CartPage } from "./pages/cart/cart";
 import { Register } from "./pages/register/register";
 import { Authorization } from "./pages/authorization/authorization";
+import { useDispatch } from "react-redux";
+import { checkAuth } from "./redux/actions/auth-async";
+import { useEffect } from "react";
+import { ArrowBack } from "./components/common/arrow-back/arrow-back";
 
 const AppColumn = styled.div`
   display: flex;
@@ -27,9 +31,16 @@ const Content = styled.div`
 `;
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+
   return (
     <AppColumn>
       <Header />
+      <ArrowBack />
       <Content>
         <GlobalError />
         <Routes>

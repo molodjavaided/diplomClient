@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { request } from "../../utils/request";
 import { addItemToCartServer } from "../../redux/actions/cart-async";
 import { Button } from "../../components/common/button/button";
@@ -10,15 +10,17 @@ import { Loader } from "../../components/common/loader/loader";
 const ProductPageContainer = ({ className }) => {
   const { user } = useSelector((state) => state.auth);
   const { productId } = useParams();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getProduct = async () => {
       try {
         setIsLoading(true);
         const response = await request(`/product/${productId}`);
+
         setProduct(response.product);
       } catch (error) {
         console.log(error);
@@ -53,13 +55,13 @@ const ProductPageContainer = ({ className }) => {
 
   const getTextButton = () => {
     if (!user) return "Авторизуйтесь";
-    if (!product.inStock || product.quantity <= 0) return "Нет в наличии";
+    if (!product?.inStock || product?.quantity <= 0) return "Нет в наличии";
     return isLoading ? "Транспортировка в корзину" : "Добавить в корзину";
   };
 
   const isDisabled = () => {
     if (isLoading) return true;
-    if (!product.inStock || product.quantity <= 0) return true;
+    if (!product?.inStock || product?.quantity <= 0) return true;
     return false;
   };
 
@@ -75,19 +77,19 @@ const ProductPageContainer = ({ className }) => {
     <div className={className}>
       <div className="product">
         <div className="product-image">
-          <img src={product.imageUrl} alt={product.title} />
+          <img src={product?.imageUrl} alt={product?.title} />
         </div>
 
         <div className="product-info">
-          <h3 className="product-title">{product.title}</h3>
-          <div className="product-description">{product.description}</div>
+          <h3 className="product-title">{product?.title}</h3>
+          <div className="product-description">{product?.description}</div>
 
-          <div className="product-quantity">{product.quantity} шт</div>
+          <div className="product-quantity">{product?.quantity} шт</div>
         </div>
       </div>
 
       <div className="product-info__price">
-        <div className="product-price">{product.price} ₽</div>
+        <div className="product-price">{product?.price} ₽</div>
         <Button
           className="add-product-to-cart"
           onClick={handleAddToCart}

@@ -85,12 +85,13 @@ export const Product = styled(ProductContainer)`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border: 1px solid #000;
   border-radius: 5px;
   padding: 25px;
   width: 800px;
   transition: transform 0.2s;
   height: 300px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 
   .product-link {
     display: flex;
