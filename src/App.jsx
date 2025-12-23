@@ -11,6 +11,9 @@ import { useDispatch } from "react-redux";
 import { checkAuth } from "./redux/actions/auth-async";
 import { useEffect } from "react";
 import { ArrowBack } from "./components/common/arrow-back/arrow-back";
+import { AdminPanel } from "./pages/admin-panel/admin-panel";
+import { ProtectedRoute } from "./components/route/protected-route";
+import { ROLEID } from "./constants/role-id";
 
 const AppColumn = styled.div`
   display: flex;
@@ -49,7 +52,14 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/product/:productId" element={<ProductPage />} />
-          <Route path="/admin" element={<div>Админ панель</div>} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute access={[ROLEID.ADMIN]}>
+                <AdminPanel />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Content>
     </AppColumn>
