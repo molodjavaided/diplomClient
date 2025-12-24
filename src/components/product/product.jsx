@@ -38,8 +38,11 @@ const ProductContainer = ({ className, product }) => {
 
   const isDisabled = () => {
     if (isLoading) return true;
-    if (!product.inStock || product.quantity <= 0) return true;
-    return false;
+    if (user) {
+      if (!product.inStock || product.quantity <= 0) return true;
+    } else {
+      return false;
+    }
   };
 
   return (

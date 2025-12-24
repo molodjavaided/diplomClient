@@ -32,7 +32,7 @@ const ProductsAdminListContainer = ({
         </thead>
         <tbody>
           {products.map((product) => (
-            <tr key={product.id || product._id} className="product-row">
+            <tr key={product.id} className="product-row">
               <td className="product-category">
                 {getNameCategory(categories, product.categoryId)}
               </td>

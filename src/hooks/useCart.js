@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchProducts } from "../redux/actions/products-async";
 import { cartActions } from "../redux/actions/cart-actions";
-import { addItemToCartServer, clearServerCart } from "../redux/actions/cart-async";
+import { addItemToCartServer, clearServerCart, makeOrder } from "../redux/actions/cart-async";
 
 export const useCart = () => {
     const dispatch = useDispatch()
@@ -37,7 +37,7 @@ export const useCart = () => {
         }
     }
 
-    const makingOrder = async () => {
+    const makingOrder = async (items) => {
         if (!user) {
             navigate('/login')
             return
